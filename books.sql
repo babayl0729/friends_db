@@ -27,3 +27,35 @@ VALUES
 ('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),
 ('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
 ('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
+
+--REVERSE--
+SELECT REVERSE(UPPER("why does my cat look at me with such hatred?"))
+
+--REPLACE--
+SELECT REPLACE(CONCAT('I', ' ', 'like', ' ', 'cats'), '', '-')
+
+--REPLACE add -> in the title--
+SELECT REPLACE(title, ' ', '->')
+AS title FROM books;
+
+--REVERSE lastname--
+SELECT author_lname AS forwards,
+REVERSE(author_lname) AS backwards 
+FROM books;
+
+--fullname in one row and uppercase--
+SELECT UPPER(CONCAT(author_fname, ' ', author)) 
+AS "full name in caps" FROM books;
+
+--combine title, 'was released', and released_year--
+SELECT CONCAT(title, ' was released in ', released_year)
+AS 'blurb' FROM books;
+
+--combining title adding ..., combining autho name, and adding "in stock" after quantity--
+SELECT CONCAT(SUBSTRING(title,1,10),'...') AS 'short title',
+CONCAT(author_lname, ',', author_fname) AS 'author',
+CONCAT(stock_quantity, ' ', 'in stock') AS quantiy
+FROM books;
+
+
+
