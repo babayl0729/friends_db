@@ -57,10 +57,62 @@ CONCAT(author_lname, ',', author_fname) AS 'author',
 CONCAT(stock_quantity, ' ', 'in stock') AS quantiy
 FROM books;
 
+--added new values--
 INSERT INTO books(title, author_fname, author_lname, released_year, stock_quantity, pages)
 VALUES('10% Happier', 'Dan', 'Harris', 2014, 29, 256),
     ('fake_book', 'Freida', 'Harris', 2001, 287, 428),
     ('Lincoln In The Bardo', 'George', 'Saunders', 2017, 1000, 367);
 
+-- Refining selections
 
+--distinct search
+SELECT DISTINCT author_lname FROM books;
+SELECT DISTINCT 
+CONCAT(author_fname,'',author_lname)
+FROM books;
+SELECT DISTINCT author_fname, author_fname
+FROM books;
+
+--titles that contain stories
+SELECT title FROM books
+WHERE title LIKE '%stories%';
+
+--finding the longest count of page
+SELECT title, pages FROM books
+ORDER BY pages DESC LIMIT 1;
+
+--find summary containing the title
+--and year, for the 3 most recent books
+SELECT CONCAT(title, ' - ', released_year)
+AS summary FROM books
+ORDER BY released_year
+DESC LIMIT 3;
+
+--books with an author_lname that contains a space(" ")
+SELECT title, author_lname FROM books
+WHERE author_lname LIKE '% %'; 
+
+--3 books with the lowest stock
+SELECT title, released_year, stock_quantity
+FROM books 
+ORDER BY stock_quantity
+ASC LIMIT 3;
+
+--sort first by author_lname and then by title
+SELECT title, author_lname from books
+ORDER BY author_lname, title ASC;
+
+-- sort alphabetically by last name
+SELECT UPPER(
+    CONCAT(
+    "my favorite author is ", 
+    author_fname,
+    " ", 
+    author_lname, "!")
+    ) AS yell 
+    FROM 
+        books 
+    ORDER BY
+        author_lname 
+    ASC;
 
