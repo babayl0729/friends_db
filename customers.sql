@@ -11,3 +11,12 @@ VALUES('Boy','George','george@gmail.com'),
 ('David','Bowie','david@gmail.com'),
 ('Blue','Steele','blue@gmail.com'),
 ('Bette','Davis','bette@aol.com');
+
+--left join cutomers to orders--
+--first_name, last_name, order_date, amount --
+SELECT  
+    first_name, last_name, order_date, amount 
+FROM 
+    customers 
+LEFT JOIN 
+    orders ON orders.customer_id = customers.id; 
