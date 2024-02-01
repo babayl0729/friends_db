@@ -3,7 +3,12 @@ CREATE TABLE orders(
     order_date DATE,
     amount DECIMAL(8,2),
     customer_id INT,
-    FOREIGN KEY(customer_id)REFERENCES customers(id)
+    FOREIGN KEY(customer_id)
+    REFERENCES customers(id)
+    --ON DELETE CASCADE constraint is used in MySQL 
+    --to delete the rows from the child table automatically, 
+    --when the rows from the parent table are deleted.
+    ON DELETE CASCADE
 );
 
 INSERT INTO orders (order_date,amount,customer_id) 
