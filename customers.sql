@@ -19,4 +19,12 @@ SELECT
 FROM 
     customers 
 LEFT JOIN 
-    orders ON orders.customer_id = customers.id; 
+    orders ON orders.customer_id = customers.id;
+ 
+--right join orders to customers--
+SELECT 
+    first_name,last_name,order_date,amount
+FROM
+    customers
+        RIGHT JOIN
+    orders ON customers.id = orders.customer_id;
