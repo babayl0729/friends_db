@@ -24,4 +24,16 @@ SELECT
 FROM 
     orders 
 LEFT JOIN 
-    customers ON orders.customer_id = customers.id; 
+    customers ON orders.customer_id = customers.id;
+
+--left join orders to customers using GROUP BY--
+--adding the amount--
+SELECT
+    first_name,last_name,
+    --if you get null replace with 0--
+    IFNULL(SUM(amount),0) AS money_spent
+FROM
+    customers
+LEFT JOIN
+    orders ON customers.id=orders.customer_id
+GROUP BY first_name,last_name;
